@@ -1,0 +1,53 @@
+import math
+
+
+#Function to get the list of divisors
+def DivProp(num):
+  result=[1]
+  maxit=int(math.sqrt(num)+1)
+  for i in range(2, maxit):
+    if num%i == 0:
+      if num/i != i:
+        result.extend([i,num/i])
+      else:
+        result.extend([i])
+  result.sort()
+  return result
+
+
+#Function to get the sum of divisors
+def DivPropSum(num):
+  result=1
+  maxit=int(math.sqrt(num)+1)
+  for i in range(2, maxit):
+    if num%i == 0:
+      if num/i != i:
+        result= result+i+num/i
+      else:
+        result= result+i
+  return result
+
+
+
+def ClasifNum(numlist):
+  result=[]
+  for i in numlist:
+    suma = DivPropSum(i)
+    if i > suma:
+      result.append([i,suma,'num0'])
+    elif i == suma:
+      result.append([i,suma,'num1'])
+    else:
+      result.append([i,suma,'num2'])
+  return result
+
+print(DivProp(100))
+print(DivPropSum(100))
+print(DivProp(123))
+print(DivPropSum(123))
+print(DivProp(4))
+print(DivPropSum(4))
+
+
+
+print(ClasifNum([10,20,34,61,6]))
